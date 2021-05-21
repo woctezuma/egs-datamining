@@ -8,8 +8,8 @@ This repository contains Python code to data-mine the Epic Games Store (EGS).
 
 ## Requirements
 
-- Install the latest version of [Python 3.X](https://www.python.org/downloads/).
-- Install the required packages:
+-   Install the latest version of [Python 3.X](https://www.python.org/downloads/).
+-   Install the required packages:
 
 ```bash
 pip install -r requirements.txt
@@ -36,8 +36,8 @@ as of May 21, 2021.
 
 Then one can look for hints of unreleased games by manually filtering entries with one of the codenames at:
 
-- [the item tracker][item-tracker-url]
-- [the offer tracker][offer-tracker-url]
+-   [the item tracker][item-tracker-url]
+-   [the offer tracker][offer-tracker-url]
 
 ![Items and Offers, in order to check entries][generic-menu]
 
@@ -49,8 +49,8 @@ e.g. with the codename `Angelfish` :
 
 Data trackers:
 
-- [items](https://github.com/srdrabx/items-tracker)
-- [offers](https://github.com/srdrabx/offers-tracker)
+-   [items](https://github.com/srdrabx/items-tracker)
+-   [offers](https://github.com/srdrabx/offers-tracker)
 
 A few useful websites:
 -   [EGData](https://egdata.app/)
