@@ -28,10 +28,10 @@ def summarize(filtered_data, verbose=False):
 
         codename = extract_codename(title)
 
-        if dev not in devs:
-            devs[dev] = [codename]
-        else:
-            devs[dev] += [codename]
+        new_set = {codename}
+        if dev in devs:
+            new_set.update(devs[dev])
+        devs[dev] = new_set
 
     sorted_devs = {
         k: sorted(list(devs[k]))
