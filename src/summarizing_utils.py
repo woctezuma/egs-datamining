@@ -33,7 +33,10 @@ def summarize(filtered_data, verbose=False):
         else:
             devs[dev] += [codename]
 
-    sorted_devs = {k: devs[k] for k in sorted(devs, key=lambda x: len(devs[x]), reverse=True)}
+    sorted_devs = {
+        k: sorted(list(devs[k]))
+        for k in sorted(devs, key=lambda x: len(devs[x]), reverse=True)
+    }
 
     if verbose:
         print(sorted_devs)
