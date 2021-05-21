@@ -6,6 +6,7 @@ import src.data_utils
 import src.filtering_utils
 import src.metadata_utils
 import src.summarizing_utils
+import src.analyzing_utils
 
 
 class TestDataUtilsMethods(TestCase):
@@ -191,6 +192,33 @@ class TestSummarizingUtilsMethods(TestCase):
         )
         sorted_devs = src.summarizing_utils.summarize(filtered_data, verbose=True)
         self.assertGreater(len(sorted_devs), 0)
+
+
+class TestAnalyzingUtilsMethods(TestCase):
+    def test_fill_in_namespaces(self):
+        data = src.data_utils.load_data()
+        known_namespaces = src.filtering_utils.get_namespaces_with_known_store_pages(
+            data
+        )
+        filtered_data = src.filtering_utils.filter_data(data, known_namespaces)
+        sorted_devs = src.summarizing_utils.summarize(filtered_data)
+        namespaces = src.analyzing_utils.fill_in_namespaces(
+            data, sorted_devs, verbose=True
+        )
+        self.assertGreater(len(namespaces), 0)
+
+    def test_gather_relevant_titles(self):
+        data = src.data_utils.load_data()
+        known_namespaces = src.filtering_utils.get_namespaces_with_known_store_pages(
+            data
+        )
+        filtered_data = src.filtering_utils.filter_data(data, known_namespaces)
+        sorted_devs = src.summarizing_utils.summarize(filtered_data)
+        namespaces = src.analyzing_utils.fill_in_namespaces(data, sorted_devs)
+        relevant_titles = src.analyzing_utils.gather_relevant_titles(
+            data, sorted_devs, namespaces, verbose=True
+        )
+        self.assertGreater(len(relevant_titles), 0)
 
 
 class TestDownloadDataMethods(TestCase):
