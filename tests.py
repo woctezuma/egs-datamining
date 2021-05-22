@@ -16,6 +16,13 @@ class TestDataUtilsMethods(TestCase):
         self.assertIn("items", data_types)
         self.assertIn("offers", data_types)
 
+    def test_get_data_file_name(self):
+        data_types = src.data_utils.get_data_types()
+        for data_type in data_types:
+            fname = src.data_utils.get_data_file_name(data_type)
+            expected_fname = f"data/{data_type}_list.json"
+            self.assertEqual(fname, expected_fname)
+
     def test_load_data(self):
         data = src.data_utils.load_data()
         self.assertGreater(len(data), 0)
