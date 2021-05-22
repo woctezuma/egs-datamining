@@ -86,7 +86,7 @@ class TestMetaDataUtilsMethods(TestCase):
         self.assertFalse(meta.is_of_interest(metadata))
 
         metadata = {
-            "title": "PythonGeneralStaging",
+            "title": "PythonGeneralAudienceStaging",
             "author": "Tim Sweeney",
             "category": ["games", "NOTaddons"],
         }
