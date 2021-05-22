@@ -31,7 +31,9 @@ def is_of_interest(metadata):
     )
 
     # When an entry contains 'General', a similar entry without it exists, so we prefer omitting it to avoid duplicates.
-    is_dummy_duplicate = "General" in metadata["title"]
+    is_dummy_duplicate = any(
+        s in metadata["title"] for s in ["GeneralAudience", "General Audience"]
+    )
 
     result = (
         has_codename_for_title
