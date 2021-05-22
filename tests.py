@@ -2,11 +2,11 @@ from unittest import TestCase
 
 import download_data
 import filter_codenames
+import src.analyzing_utils
 import src.data_utils
 import src.filtering_utils
 import src.metadata_utils as meta
 import src.summarizing_utils
-import src.analyzing_utils
 
 
 class TestDataUtilsMethods(TestCase):
