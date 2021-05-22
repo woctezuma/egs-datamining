@@ -4,7 +4,7 @@ import download_data
 import filter_codenames
 import src.data_utils
 import src.filtering_utils
-import src.metadata_utils
+import src.metadata_utils as meta
 import src.summarizing_utils
 import src.analyzing_utils
 
@@ -38,7 +38,7 @@ class TestMetaDataUtilsMethods(TestCase):
             1551704831,
             1618503565,
         ]
-        metadata = src.metadata_utils.parse_metadata(data_element)
+        metadata = meta.parse_metadata(data_element)
         self.assertEqual(len(metadata), 6)
 
     def test_parse_metadata_from_offers(self):
@@ -53,7 +53,7 @@ class TestMetaDataUtilsMethods(TestCase):
             "https://cdn1.epicgames.com/phlox/offer/EGS_Griftlands_KleiEntertainment_S2-860x1148-5fc47bd45ab3e9271046563fa33b5081.jpg",
             "griftlands/home",
         ]
-        metadata = src.metadata_utils.parse_metadata(data_element)
+        metadata = meta.parse_metadata(data_element)
         self.assertEqual(len(metadata), 6)
 
     def test_is_of_interest(self):
@@ -62,62 +62,62 @@ class TestMetaDataUtilsMethods(TestCase):
             "author": "Tim Sweeney",
             "category": ["games", "NOTaddons"],
         }
-        self.assertTrue(src.metadata_utils.is_of_interest(metadata))
+        self.assertTrue(meta.is_of_interest(metadata))
 
         metadata = {
             "title": "PythonStaging",
             "author": "Tim Sweeney",
             "category": ["games", "NOTaddons"],
         }
-        self.assertTrue(src.metadata_utils.is_of_interest(metadata))
+        self.assertTrue(meta.is_of_interest(metadata))
 
         metadata = {
             "title": "PythonGeneralAudience",
             "author": "Tim Sweeney",
             "category": ["games", "NOTaddons"],
         }
-        self.assertFalse(src.metadata_utils.is_of_interest(metadata))
+        self.assertFalse(meta.is_of_interest(metadata))
 
         metadata = {
             "title": "PythonGeneralStaging",
             "author": "Tim Sweeney",
             "category": ["games", "NOTaddons"],
         }
-        self.assertFalse(src.metadata_utils.is_of_interest(metadata))
+        self.assertFalse(meta.is_of_interest(metadata))
 
         metadata = {
             "title": "Python",
             "author": "Tim Sweeney",
             "category": ["games", "NOTaddons"],
         }
-        self.assertFalse(src.metadata_utils.is_of_interest(metadata))
+        self.assertFalse(meta.is_of_interest(metadata))
 
         metadata = {
             "title": "PythonAudience",
             "author": "Tim Sweeney",
             "category": ["games", "addons"],
         }
-        self.assertFalse(src.metadata_utils.is_of_interest(metadata))
+        self.assertFalse(meta.is_of_interest(metadata))
 
         metadata = {
             "title": "PythonAudience",
             "author": "",
             "category": ["games", "NOTaddons"],
         }
-        self.assertFalse(src.metadata_utils.is_of_interest(metadata))
+        self.assertFalse(meta.is_of_interest(metadata))
 
     def test_has_store_page(self):
         metadata = {"image": "123", "slug": "456"}
-        self.assertTrue(src.metadata_utils.has_store_page(metadata))
+        self.assertTrue(meta.has_store_page(metadata))
 
         metadata = {"image": "123", "slug": ""}
-        self.assertFalse(src.metadata_utils.has_store_page(metadata))
+        self.assertFalse(meta.has_store_page(metadata))
 
         metadata = {"image": "", "slug": "456"}
-        self.assertFalse(src.metadata_utils.has_store_page(metadata))
+        self.assertFalse(meta.has_store_page(metadata))
 
         metadata = {"image": "", "slug": ""}
-        self.assertFalse(src.metadata_utils.has_store_page(metadata))
+        self.assertFalse(meta.has_store_page(metadata))
 
 
 class TestFilteringUtilsMethods(TestCase):
