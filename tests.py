@@ -158,36 +158,24 @@ class TestSummarizingUtilsMethods(TestCase):
         self.assertEqual(["Audience", "Staging", "Dev"], suffixes)  # the order matters!
 
     def test_extract_codename(self):
-        self.assertEqual(src.summarizing_utils.extract_codename("DevPython"), "Python")
-        self.assertEqual(src.summarizing_utils.extract_codename("PythonDev"), "Python")
-        self.assertEqual(
-            src.summarizing_utils.extract_codename("PythonDevStaging"), "Python"
-        )
-        self.assertEqual(
-            src.summarizing_utils.extract_codename("PythonDevStagingAudience"), "Python"
-        )
-        self.assertEqual(
-            src.summarizing_utils.extract_codename("PythonStaging"), "Python"
-        )
-        self.assertEqual(
-            src.summarizing_utils.extract_codename("PythonStagingAudience"), "Python"
-        )
-        self.assertEqual(
-            src.summarizing_utils.extract_codename("PythonAudience"), "Python"
-        )
-        self.assertEqual(
-            src.summarizing_utils.extract_codename("DevPythonDevStagingAudience"),
-            "Python",
-        )
-        self.assertEqual(
-            src.summarizing_utils.extract_codename("DevPythonStagingAudience"), "Python"
-        )
-        self.assertEqual(
-            src.summarizing_utils.extract_codename("DevPythonStaging"), "Python"
-        )
-        self.assertEqual(
-            src.summarizing_utils.extract_codename("DevPythonAudience"), "Python"
-        )
+        codename = "Python"
+        for prefixe in ["", "Dev"]:
+            for suffixe in [
+                "",
+                "Audience",
+                "Staging",
+                "StagingAudience",
+                "Dev",
+                "DevAudience",
+                "DevStaging",
+                "DevStagingAudience",
+            ]:
+                self.assertEqual(
+                    src.summarizing_utils.extract_codename(
+                        f"{prefixe}{codename}{suffixe}"
+                    ),
+                    codename,
+                )
 
     def test_summarize(self):
         data = src.data_utils.load_data()
