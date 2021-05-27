@@ -10,10 +10,13 @@ def parse_metadata(data_element):
         slug = ""
 
     metadata = {
+        "id": data_element[0].strip(),
         "namespace": data_element[1].strip(),
         "title": data_element[2].strip(),
         "category": data_element[3],  # this is a list
         "author": data_element[4].strip(),
+        "creation_date": data_element[5],
+        "last_modification_date": data_element[6],
         "image": image_url.strip(),
         "slug": slug.strip(),
     }
