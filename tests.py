@@ -46,7 +46,7 @@ class TestMetaDataUtilsMethods(TestCase):
             1618503565,
         ]
         metadata = meta.parse_metadata(data_element)
-        self.assertEqual(len(metadata), 6)
+        self.assertEqual(len(metadata), 9)
 
     def test_parse_metadata_from_offers(self):
         data_element = [
@@ -61,7 +61,7 @@ class TestMetaDataUtilsMethods(TestCase):
             "griftlands/home",
         ]
         metadata = meta.parse_metadata(data_element)
-        self.assertEqual(len(metadata), 6)
+        self.assertEqual(len(metadata), 9)
 
     def test_is_of_interest(self):
         metadata = {
