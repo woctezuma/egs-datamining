@@ -27,6 +27,34 @@ def fill_in_namespaces(data, sorted_devs, verbose=False):
     return namespaces
 
 
+def is_dummy_slug(slug):
+    is_dummy = len(slug) == 0 or slug == "[]"
+    return is_dummy
+
+
+def get_slug_suffixe_for_display(metadata):
+    slug = metadata["slug"]
+    if not is_dummy_slug(slug):
+        suffixe = f" (slug: {slug})"
+    else:
+        suffixe = ""
+    return suffixe
+
+
+def is_dummy_image_url(image_url):
+    is_dummy = len(image_url) == 0
+    return is_dummy
+
+
+def get_image_url_suffixe_for_display(metadata):
+    image_url = metadata["image"]
+    if not is_dummy_image_url(image_url):
+        suffixe = f" -> image: {image_url}"
+    else:
+        suffixe = ""
+    return suffixe
+
+
 def gather_relevant_titles(data, sorted_devs, namespaces, verbose=False):
     relevant_titles = dict()
 
@@ -48,6 +76,11 @@ def gather_relevant_titles(data, sorted_devs, namespaces, verbose=False):
                         relevant_titles[codename].append(title)
 
                         if verbose:
-                            print(f"\t\t- {title}")
+                            slug_suffixe = get_slug_suffixe_for_display(metadata)
+                            image_url_suffixe = get_image_url_suffixe_for_display(
+                                metadata
+                            )
+                            suffixe = slug_suffixe + image_url_suffixe
+                            print(f"\t\t- {title}{suffixe}")
 
     return relevant_titles
