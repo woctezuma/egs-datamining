@@ -202,6 +202,41 @@ class TestAnalyzingUtilsMethods(TestCase):
         )
         self.assertGreater(len(namespaces), 0)
 
+    def test_is_dummy_slug(self):
+        self.assertTrue(src.analyzing_utils.is_dummy_slug(""))
+        self.assertTrue(src.analyzing_utils.is_dummy_slug("[]"))
+        self.assertFalse(src.analyzing_utils.is_dummy_slug("fortnite"))
+
+    def test_get_slug_suffixe_for_display(self):
+        suffixe = src.analyzing_utils.get_slug_suffixe_for_display({"slug": ""})
+        self.assertEqual(len(suffixe), 0)
+        suffixe = src.analyzing_utils.get_slug_suffixe_for_display({"slug": "[]"})
+        self.assertEqual(len(suffixe), 0)
+        suffixe = src.analyzing_utils.get_slug_suffixe_for_display({"slug": "fortnite"})
+        self.assertGreater(len(suffixe), 0)
+
+    def test_is_dummy_image_url(self):
+        self.assertTrue(src.analyzing_utils.is_dummy_image_url(""))
+        self.assertTrue(src.analyzing_utils.is_dummy_image_url("fake_url"))
+        self.assertFalse(src.analyzing_utils.is_dummy_image_url("http"))
+        self.assertFalse(src.analyzing_utils.is_dummy_image_url("https"))
+
+    def test_get_image_url_suffixe_for_display(self):
+        suffixe = src.analyzing_utils.get_image_url_suffixe_for_display({"image": ""})
+        self.assertEqual(len(suffixe), 0)
+        suffixe = src.analyzing_utils.get_image_url_suffixe_for_display(
+            {"image": "fake_url"}
+        )
+        self.assertEqual(len(suffixe), 0)
+        suffixe = src.analyzing_utils.get_image_url_suffixe_for_display(
+            {"image": "http"}
+        )
+        self.assertGreater(len(suffixe), 0)
+        suffixe = src.analyzing_utils.get_image_url_suffixe_for_display(
+            {"image": "https"}
+        )
+        self.assertGreater(len(suffixe), 0)
+
     def test_gather_relevant_titles(self):
         data = src.data_utils.load_data()
         known_namespaces = src.filtering_utils.get_namespaces_with_known_store_pages(
