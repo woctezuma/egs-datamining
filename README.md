@@ -70,8 +70,8 @@ A few useful websites:
 [generic-cover]: <https://github.com/woctezuma/egs-datamining/wiki/cover.png>
 [generic-menu]: <https://github.com/woctezuma/egs-datamining/wiki/img/menu.png>
 
-[item-tracker-url]: <https://epicdatainfo.vercel.app/items>
-[offer-tracker-url]: <https://epicdatainfo.vercel.app/offers>
+[item-tracker-url]: <https://database.egdata.app/items>
+[offer-tracker-url]: <https://database.egdata.app/offers>
 
 [python-download-url]: <https://www.python.org/downloads/>
 
@@ -79,4 +79,4 @@ A few useful websites:
 [offer-tracker-github]: <https://github.com/srdrabx/offers-tracker>
 
 [egdata-website]: <https://egdata.app/>
-[egdatabase-website]: <https://epicdatainfo.vercel.app/>
+[egdatabase-website]: <https://database.egdata.app/>
