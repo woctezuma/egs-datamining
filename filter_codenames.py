@@ -8,6 +8,7 @@ def main():
     data = load_data()
     known_namespaces = get_namespaces_with_known_store_pages(data)
     filtered_data = filter_data(data, known_namespaces, verbose=False)
+
     sorted_devs = summarize(filtered_data, verbose=True)
     save_data(sorted_devs, fname="data/output.json")
 
