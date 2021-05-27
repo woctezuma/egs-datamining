@@ -8,7 +8,7 @@ This repository contains Python code to data-mine the Epic Games Store (EGS).
 
 ## Requirements
 
--   Install the latest version of [Python 3.X](https://www.python.org/downloads/).
+-   Install the latest version of [Python 3.X][python-download-url].
 -   Install the required packages:
 
 ```bash
@@ -49,12 +49,12 @@ e.g. with the codename `Angelfish` :
 
 Data trackers:
 
--   [items](https://github.com/srdrabx/items-tracker)
--   [offers](https://github.com/srdrabx/offers-tracker)
+-   [items][item-tracker-github]
+-   [offers][offer-tracker-github]
 
 A few useful websites:
--   [EGData](https://egdata.app/)
--   [EpicDataInfo](https://epicdatainfo.vercel.app/)
+-   [EGData][egdata-website]
+-   [EpicDataInfo][egdatabase-website]
 
 <!-- Definitions -->
 
@@ -72,3 +72,11 @@ A few useful websites:
 
 [item-tracker-url]: <https://epicdatainfo.vercel.app/items>
 [offer-tracker-url]: <https://epicdatainfo.vercel.app/offers>
+
+[python-download-url]: <https://www.python.org/downloads/>
+
+[item-tracker-github]: <https://github.com/srdrabx/items-tracker>
+[offer-tracker-github]: <https://github.com/srdrabx/offers-tracker>
+
+[egdata-website]: <https://egdata.app/>
+[egdatabase-website]: <https://epicdatainfo.vercel.app/>
