@@ -42,7 +42,7 @@ def get_slug_suffixe_for_display(metadata):
 
 
 def is_dummy_image_url(image_url):
-    is_dummy = len(image_url) == 0
+    is_dummy = len(image_url) == 0 or not image_url.startswith("http")
     return is_dummy
 
 
