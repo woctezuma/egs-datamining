@@ -6,6 +6,12 @@
 
 This repository contains Python code to data-mine the Epic Games Store (EGS).
 
+The workflow consists in:
+1.   extracting codenames from the databases of `items` and `offers`,
+2.   filtering out codenames associated with a known store page,
+3.   listing one or several namespaces associated to each codename,
+4.   listing one or several `items` and `offers` associated to each namespace.
+
 ## Requirements
 
 -   Install the latest version of [Python 3.X][python-download-url].
