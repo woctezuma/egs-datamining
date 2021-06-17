@@ -55,6 +55,24 @@ def get_image_url_suffixe_for_display(metadata):
     return suffixe
 
 
+def is_dummy_save_folder(save_folder):
+    is_dummy = save_folder is None or len(save_folder) == 0
+    return is_dummy
+
+
+def get_save_folder_suffixe_for_display(item_data):
+    try:
+        cloud_save_folder = item_data["customAttributes"]["CloudSaveFolder"]["value"]
+    except (TypeError, KeyError) as e:
+        cloud_save_folder = None
+
+    if not is_dummy_save_folder(cloud_save_folder):
+        suffixe = f" -> CloudSaveFolder: {cloud_save_folder}"
+    else:
+        suffixe = ""
+    return suffixe
+
+
 def gather_relevant_titles(data, sorted_devs, namespaces, verbose=False):
     relevant_titles = dict()
 
