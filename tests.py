@@ -4,6 +4,7 @@ import download_data
 import filter_codenames
 import src.analyzing_utils
 import src.data_utils
+import src.download_utils
 import src.filtering_utils
 import src.metadata_utils as meta
 import src.summarizing_utils
@@ -251,16 +252,18 @@ class TestAnalyzingUtilsMethods(TestCase):
         self.assertGreater(len(relevant_titles), 0)
 
 
-class TestDownloadDataMethods(TestCase):
+class TestDownloadUtilsMethods(TestCase):
     def test_get_data_tracker_url(self):
-        url = download_data.get_data_tracker_url(data_type="dummy")
+        url = src.download_utils.get_data_tracker_url(data_type="dummy")
         self.assertTrue(url.startswith("https://raw.githubusercontent.com/srdrabx/"))
         self.assertTrue(url.endswith("-tracker/master/database/list.json"))
 
     def test_download_from_data_tracker(self):
-        data = download_data.download_from_data_tracker(data_type="dummy")
+        data = src.download_utils.download_from_data_tracker(data_type="dummy")
         self.assertTrue(data is None)
 
+
+class TestDownloadDataMethods(TestCase):
     def test_main(self):
         flag = download_data.main()
         self.assertTrue(flag)
