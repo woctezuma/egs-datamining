@@ -3,7 +3,7 @@ def get_prefixes():
 
 
 def get_suffixes():
-    # Caveat: the order matters!
+    # Caveat: the order matters for extract_codename()!
     return ["Audience", "Staging", "Dev"]
 
 
