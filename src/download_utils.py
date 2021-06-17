@@ -7,6 +7,12 @@ def get_data_tracker_url(data_type):
     return url
 
 
+def get_item_data_tracker_url(item_id):
+    url = f"https://raw.githubusercontent.com/srdrabx/items-tracker/master/database/items/{item_id}.json"
+
+    return url
+
+
 def download_from_data_tracker(data_type="items", url=None):
     if url is None:
         url = get_data_tracker_url(data_type)
@@ -21,3 +27,10 @@ def download_from_data_tracker(data_type="items", url=None):
         data = None
 
     return data
+
+
+def download_from_item_data_tracker(item_id):
+    url = get_item_data_tracker_url(item_id)
+    item_data = download_from_data_tracker(url=url)
+
+    return item_data
