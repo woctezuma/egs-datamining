@@ -1,3 +1,4 @@
+from src.item_data_utils import load_item_data
 from src.metadata_utils import parse_metadata
 from src.summarizing_utils import get_suffixes
 
@@ -93,12 +94,22 @@ def gather_relevant_titles(data, sorted_devs, namespaces, verbose=False):
                         title = metadata["title"]
                         relevant_titles[codename].append(title)
 
+                        # NB: "id" is interpreted as an id for "items", no matter if it comes from "items" or "offers".
+                        # Therefore, for "offers", download of "item" data will fail, and returned data will be None.
+                        item_id = metadata["id"]
+                        item_data = load_item_data(item_id=item_id, verbose=False)
+
                         if verbose:
                             slug_suffixe = get_slug_suffixe_for_display(metadata)
                             image_url_suffixe = get_image_url_suffixe_for_display(
                                 metadata
                             )
-                            suffixe = slug_suffixe + image_url_suffixe
+                            save_folder_suffixe = get_save_folder_suffixe_for_display(
+                                item_data
+                            )
+                            suffixe = (
+                                slug_suffixe + image_url_suffixe + save_folder_suffixe
+                            )
                             print(f"\t\t- {title}{suffixe}")
 
     return relevant_titles
