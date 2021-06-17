@@ -271,5 +271,5 @@ class TestDownloadDataMethods(TestCase):
 
 class TestFilterCodenamesMethods(TestCase):
     def test_main(self):
-        flag = filter_codenames.main()
+        flag = filter_codenames.main(request_item_data=False)
         self.assertTrue(flag)

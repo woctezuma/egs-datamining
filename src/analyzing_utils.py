@@ -74,7 +74,9 @@ def get_save_folder_suffixe_for_display(item_data):
     return suffixe
 
 
-def gather_relevant_titles(data, sorted_devs, namespaces, verbose=False):
+def gather_relevant_titles(
+    data, sorted_devs, namespaces, request_item_data=False, verbose=False
+):
     relevant_titles = dict()
 
     for dev in sorted_devs:
@@ -96,8 +98,11 @@ def gather_relevant_titles(data, sorted_devs, namespaces, verbose=False):
 
                         # NB: "id" is interpreted as an id for "items", no matter if it comes from "items" or "offers".
                         # Therefore, for "offers", download of "item" data will fail, and returned data will be None.
-                        item_id = metadata["id"]
-                        item_data = load_item_data(item_id=item_id, verbose=False)
+                        if request_item_data:
+                            item_id = metadata["id"]
+                            item_data = load_item_data(item_id=item_id, verbose=False)
+                        else:
+                            item_data = None
 
                         if verbose:
                             slug_suffixe = get_slug_suffixe_for_display(metadata)

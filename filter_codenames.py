@@ -4,7 +4,7 @@ from src.filtering_utils import get_namespaces_with_known_store_pages, filter_da
 from src.summarizing_utils import summarize
 
 
-def main():
+def main(request_item_data=False):
     data = load_data()
     known_namespaces = get_namespaces_with_known_store_pages(data)
     filtered_data = filter_data(data, known_namespaces, verbose=False)
@@ -16,7 +16,7 @@ def main():
     save_data(namespaces, "data/namespaces.json")
 
     relevant_titles = gather_relevant_titles(
-        data, sorted_devs, namespaces, verbose=True
+        data, sorted_devs, namespaces, request_item_data, verbose=True
     )
     save_data(relevant_titles, "data/relevant_titles.json")
 
@@ -24,4 +24,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(request_item_data=True)
