@@ -13,7 +13,7 @@ def get_item_data_tracker_url(item_id):
     return url
 
 
-def download_from_data_tracker(data_type="items", url=None):
+def download_from_data_tracker(data_type="items", url=None, verbose=True):
     if url is None:
         url = get_data_tracker_url(data_type)
     response = requests.get(url=url)
@@ -21,16 +21,17 @@ def download_from_data_tracker(data_type="items", url=None):
     if response.ok:
         data = response.json()
     else:
-        print(
-            f"Data could not be downloaded from {url}. Status code {response.status_code} was returned."
-        )
+        if verbose:
+            print(
+                f"Data could not be downloaded from {url}. Status code {response.status_code} was returned."
+            )
         data = None
 
     return data
 
 
-def download_from_item_data_tracker(item_id):
+def download_from_item_data_tracker(item_id, verbose=True):
     url = get_item_data_tracker_url(item_id)
-    item_data = download_from_data_tracker(url=url)
+    item_data = download_from_data_tracker(url=url, verbose=verbose)
 
     return item_data

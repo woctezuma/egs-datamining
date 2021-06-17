@@ -13,14 +13,14 @@ def get_item_data_filename(item_id, folder_name="data/items/"):
     return folder_name + fname
 
 
-def load_item_data(item_id):
+def load_item_data(item_id, verbose=True):
     fname = get_item_data_filename(item_id)
 
     try:
         with open(fname, encoding="utf8") as f:
             item_data = json.load(f)
     except FileNotFoundError:
-        item_data = download_from_item_data_tracker(item_id)
+        item_data = download_from_item_data_tracker(item_id, verbose=verbose)
         save_data(item_data, fname)
 
     return item_data
