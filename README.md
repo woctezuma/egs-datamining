@@ -63,6 +63,10 @@ A few useful websites:
 -   [EGData][egdata-website]
 -   [EpicDataInfo][egdatabase-website]
 
+Press coverage:
+-   [PC Gamer][pcgamer-ff7r-awr]: "Final Fantasy 7 Remake listing shows up on Epic Games Store database tracker"
+-   [VGC][vgc-ff7r-awr]: "Alan Wake Remastered and Final Fantasy 7 Remake listings spotted on the Epic Games Store’s database"
+
 <!-- Definitions -->
 
 [build-action]: <https://github.com/woctezuma/egs-datamining/actions>
@@ -87,3 +91,6 @@ A few useful websites:
 
 [egdata-website]: <https://egdata.app/>
 [egdatabase-website]: <https://database.egdata.app/>
+
+[pcgamer-ff7r-awr]: <https://www.pcgamer.com/report-alan-wake-remastered-and-final-fantasy-7-remake-coming-to-the-epic-games-store/>
+[vgc-ff7r-awr]: <https://www.videogameschronicle.com/news/alan-wake-remastered-and-final-fantasy-7-remake-listings-spotted-on-the-epic-games-stores-database/>
