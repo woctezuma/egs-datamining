@@ -6,8 +6,26 @@ import src.analyzing_utils
 import src.data_utils
 import src.download_utils
 import src.filtering_utils
+import src.item_data_utils as itemdata
 import src.metadata_utils as meta
 import src.summarizing_utils
+
+
+class TestItemDataUtilsMethods(TestCase):
+    def test_get_item_data_filename(self):
+        item_id = "60e58164ca7442d78c39f5ba54ff2e63"
+        fname = itemdata.get_item_data_filename(item_id)
+        expected_fname = f"data/items/{item_id}.json"
+        self.assertEqual(fname, expected_fname)
+
+    def test_load_item_data(self):
+        item_id = "60e58164ca7442d78c39f5ba54ff2e63"
+        item_data = itemdata.load_item_data(item_id)
+        self.assertGreater(len(item_data), 0)
+
+        item_id = "dummy"
+        item_data = itemdata.load_item_data(item_id)
+        self.assertIsNone(item_data)
 
 
 class TestDataUtilsMethods(TestCase):
@@ -238,6 +256,34 @@ class TestAnalyzingUtilsMethods(TestCase):
         )
         self.assertGreater(len(suffixe), 0)
 
+    def test_is_dummy_save_folder(self):
+        self.assertTrue(src.analyzing_utils.is_dummy_save_folder(None))
+        self.assertTrue(src.analyzing_utils.is_dummy_save_folder(""))
+        self.assertFalse(
+            src.analyzing_utils.is_dummy_save_folder(
+                "{UserDir}/My Games/FINAL FANTASY VII REMAKE/"
+            )
+        )
+
+    def test_get_save_folder_suffixe_for_display(self):
+        item_data = None
+        suffixe = src.analyzing_utils.get_save_folder_suffixe_for_display(item_data)
+        self.assertEqual(len(suffixe), 0)
+
+        item_data = {"customAttributes": {"CloudSaveFolder": {"dummy": ""}}}
+        suffixe = src.analyzing_utils.get_save_folder_suffixe_for_display(item_data)
+        self.assertEqual(len(suffixe), 0)
+
+        item_data = {"customAttributes": {"CloudSaveFolder": {"value": ""}}}
+        suffixe = src.analyzing_utils.get_save_folder_suffixe_for_display(item_data)
+        self.assertEqual(len(suffixe), 0)
+
+        item_data = {
+            "customAttributes": {"CloudSaveFolder": {"value": "{UserDir}/My Games/"}}
+        }
+        suffixe = src.analyzing_utils.get_save_folder_suffixe_for_display(item_data)
+        self.assertGreater(len(suffixe), 0)
+
     def test_gather_relevant_titles(self):
         data = src.data_utils.load_data()
         known_namespaces = src.filtering_utils.get_namespaces_with_known_store_pages(
@@ -258,9 +304,27 @@ class TestDownloadUtilsMethods(TestCase):
         self.assertTrue(url.startswith("https://raw.githubusercontent.com/srdrabx/"))
         self.assertTrue(url.endswith("-tracker/master/database/list.json"))
 
+    def test_get_item_data_tracker_url(self):
+        url = src.download_utils.get_item_data_tracker_url(item_id="dummy")
+        self.assertTrue(
+            url.startswith(
+                "https://raw.githubusercontent.com/srdrabx/items-tracker/master/database/items/"
+            )
+        )
+        self.assertTrue(url.endswith(".json"))
+
     def test_download_from_data_tracker(self):
         data = src.download_utils.download_from_data_tracker(data_type="dummy")
         self.assertTrue(data is None)
+
+    def test_download_from_item_data_tracker(self):
+        data = src.download_utils.download_from_item_data_tracker(item_id="dummy")
+        self.assertIsNone(data)
+
+        data = src.download_utils.download_from_item_data_tracker(
+            item_id="60e58164ca7442d78c39f5ba54ff2e63"
+        )
+        self.assertIsNotNone(data)
 
 
 class TestDownloadDataMethods(TestCase):
