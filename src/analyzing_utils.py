@@ -56,6 +56,28 @@ def get_image_url_suffixe_for_display(metadata):
     return suffixe
 
 
+def get_key_image_url_suffixe_for_display(item_data):
+    try:
+        key_images = item_data["keyImages"]
+    except (KeyError, TypeError):
+        key_images = []
+
+    suffixe = ""
+    for image_no, key_image in enumerate(key_images, start=1):
+        image_url = key_image["url"]
+
+        image_url = fix_whitespaces_in_url(image_url)
+
+        if not is_dummy_image_url(image_url):
+            suffixe += f" -> key_image n°{image_no}: {image_url}"
+
+    return suffixe
+
+
+def fix_whitespaces_in_url(url):
+    return url.replace(" ", "%20")
+
+
 def is_dummy_save_folder(save_folder):
     is_dummy = save_folder is None or len(save_folder) == 0
     return is_dummy
@@ -112,8 +134,14 @@ def gather_relevant_titles(
                             save_folder_suffixe = get_save_folder_suffixe_for_display(
                                 item_data
                             )
+                            key_image_url_suffixe = (
+                                get_key_image_url_suffixe_for_display(item_data)
+                            )
                             suffixe = (
-                                slug_suffixe + image_url_suffixe + save_folder_suffixe
+                                slug_suffixe
+                                + image_url_suffixe
+                                + save_folder_suffixe
+                                + key_image_url_suffixe
                             )
                             print(f"\t\t- {title}{suffixe}")
 
