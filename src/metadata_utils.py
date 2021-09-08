@@ -9,10 +9,14 @@ def parse_metadata(data_element):
     except IndexError:
         slug = ""
 
+    title = data_element[2]
+    if title is None:
+        title = ""
+
     metadata = {
         "id": data_element[0].strip(),
         "namespace": data_element[1].strip(),
-        "title": data_element[2].strip(),
+        "title": title.strip(),
         "category": data_element[3],  # this is a list
         "author": data_element[4].strip(),
         "creation_date": data_element[5],
